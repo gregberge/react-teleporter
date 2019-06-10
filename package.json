@@ -14,6 +14,7 @@
     "build": "rollup -c",
     "format": "prettier --write \"**/*.{js,json,md,mdx}\"",
     "lint": "eslint .",
+    "prepublishOnly": "yarn build",
     "release": "standard-version && conventional-github-releaser --preset angular",
     "test": "jest"
   },
