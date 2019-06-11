@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/npm/l/react-teleporter.svg)](https://github.com/smooth-code/react-teleporter/blob/master/LICENSE)
 [![npm package](https://img.shields.io/npm/v/react-teleporter/latest.svg)](https://www.npmjs.com/package/react-teleporter)
-[![CircleCI](https://circleci.com/gh/smooth-code/react-teleporter.svg?style=svg)](https://circleci.com/gh/smooth-code/react-teleporter)
+[![CircleCI](https://circleci.com/gh/smooth-code/react-teleporter/tree/master.svg?style=svg)](https://circleci.com/gh/smooth-code/react-teleporter/tree/master)
 [![codecov](https://codecov.io/gh/smooth-code/react-teleporter/branch/master/graph/badge.svg)](https://codecov.io/gh/smooth-code/react-teleporter)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 [![Dependencies](https://img.shields.io/david/smooth-code/react-teleporter.svg)](https://david-dm.org/smooth-code/react-teleporter)
