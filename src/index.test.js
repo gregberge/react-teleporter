@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
 import 'jest-dom/extend-expect'
 import { createTeleporter } from './index'
 
@@ -66,6 +66,27 @@ describe('teleporter', () => {
     expect(getByTestId('target').firstChild.tagName).toBe('HEADER')
   })
 
+  it('forwards props to Target', () => {
+    const Teleporter = createTeleporter()
+    const clickSpy = jest.fn()
+
+    const { getByTestId } = render(
+      <div>
+        <div data-testid="target">
+          <Teleporter.Target as="header" onClick={clickSpy} />
+        </div>
+        <div>
+          <Teleporter.Source>Hello</Teleporter.Source>
+        </div>
+      </div>,
+    )
+
+    const targetContainer = getByTestId('target')
+    expect(targetContainer).toHaveTextContent('Hello')
+    fireEvent.click(targetContainer.firstChild)
+    expect(clickSpy).toHaveBeenCalled()
+  })
+
   it('expose "useTargetRef"', () => {
     const Teleporter = createTeleporter()
 
@@ -87,5 +108,100 @@ describe('teleporter', () => {
 
     expect(getByTestId('target')).toHaveTextContent('Hello')
     expect(getByTestId('target').firstChild.tagName).toBe('SECTION')
+  })
+
+  describe('mount order', () => {
+    let Teleporter
+    let App
+    beforeEach(() => {
+      Teleporter = createTeleporter()
+      App = ({ hasTarget, hasSource }) => {
+        return (
+          <div>
+            <div data-testid="target">{hasTarget && <Teleporter.Target />}</div>
+            <div>
+              {hasSource && <Teleporter.Source>Hello</Teleporter.Source>}
+            </div>
+          </div>
+        )
+      }
+    })
+
+    it('supports target late mount', () => {
+      const { getByTestId, rerender } = render(
+        <App hasSource hasTarget={false} />,
+      )
+      const targetContainer = getByTestId('target')
+      expect(targetContainer).not.toHaveTextContent('Hello')
+      rerender(<App hasSource hasTarget />)
+      expect(targetContainer).toHaveTextContent('Hello')
+    })
+
+    it('supports target unmount', () => {
+      const { getByTestId, rerender } = render(<App hasSource hasTarget />)
+      const targetContainer = getByTestId('target')
+      expect(targetContainer).toHaveTextContent('Hello')
+      rerender(<App hasSource hasTarget={false} />)
+      expect(targetContainer).not.toHaveTextContent('Hello')
+    })
+
+    it('supports source late mount', () => {
+      const { getByTestId, rerender } = render(
+        <App hasSource={false} hasTarget />,
+      )
+      const targetContainer = getByTestId('target')
+      expect(targetContainer).not.toHaveTextContent('Hello')
+      rerender(<App hasSource hasTarget />)
+      expect(targetContainer).toHaveTextContent('Hello')
+    })
+
+    it('supports source unmount', () => {
+      const { getByTestId, rerender } = render(<App hasSource hasTarget />)
+      const targetContainer = getByTestId('target')
+      expect(targetContainer).toHaveTextContent('Hello')
+      rerender(<App hasSource={false} hasTarget />)
+      expect(targetContainer).not.toHaveTextContent('Hello')
+    })
+  })
+
+  describe('multiple sources / targets', () => {
+    it('handles multiple sources', () => {
+      const Teleporter = createTeleporter()
+
+      const { getByTestId } = render(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target />
+          </div>
+          <div>
+            <Teleporter.Source>A</Teleporter.Source>
+            <Teleporter.Source>B</Teleporter.Source>
+          </div>
+        </div>,
+      )
+
+      expect(getByTestId('target')).toHaveTextContent('AB')
+    })
+
+    it('handles uses the latest target defined', () => {
+      const Teleporter = createTeleporter()
+
+      const { getByTestId } = render(
+        <div>
+          <div data-testid="targetA">
+            <Teleporter.Target />
+          </div>
+          <div data-testid="targetB">
+            <Teleporter.Target />
+          </div>
+          <div>
+            <Teleporter.Source>A</Teleporter.Source>
+          </div>
+        </div>,
+      )
+
+      expect(getByTestId('targetA')).not.toHaveTextContent('A')
+      expect(getByTestId('targetB')).toHaveTextContent('A')
+    })
   })
 })

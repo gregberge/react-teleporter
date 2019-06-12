@@ -67,6 +67,16 @@ const Teleporter = createTeleporter()
 
 > Be careful of specifying an element with a ref to a DOM element, it uses [React Portals](https://reactjs.org/docs/portals.html) under the hood.
 
+### Use props on target
+
+All props are forwarded to target.
+
+```js
+const Teleporter = createTeleporter()
+
+<Teleporter.Target onClick={/* ... */} />
+```
+
 ### Create a custom target ref
 
 Use `useTargetRef` to create a custom target ref.
