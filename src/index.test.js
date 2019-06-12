@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup } from '@testing-library/react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
 import 'jest-dom/extend-expect'
 import { createTeleporter } from './index'
 
@@ -64,6 +64,27 @@ describe('teleporter', () => {
 
     expect(getByTestId('target')).toHaveTextContent('Hello')
     expect(getByTestId('target').firstChild.tagName).toBe('HEADER')
+  })
+
+  it('forwards props to Target', () => {
+    const Teleporter = createTeleporter()
+    const clickSpy = jest.fn()
+
+    const { getByTestId } = render(
+      <div>
+        <div data-testid="target">
+          <Teleporter.Target as="header" onClick={clickSpy} />
+        </div>
+        <div>
+          <Teleporter.Source>Hello</Teleporter.Source>
+        </div>
+      </div>,
+    )
+
+    const targetContainer = getByTestId('target')
+    expect(targetContainer).toHaveTextContent('Hello')
+    fireEvent.click(targetContainer.firstChild)
+    expect(clickSpy).toHaveBeenCalled()
   })
 
   it('expose "useTargetRef"', () => {

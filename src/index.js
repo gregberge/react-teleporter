@@ -18,9 +18,9 @@ export function createTeleporter() {
     }, [])
   }
 
-  function Target({ as: As = 'div' }) {
+  function Target({ as: As = 'div', ...props }) {
     const handleRef = useTargetRef()
-    return <As ref={handleRef} />
+    return <As ref={handleRef} {...props} />
   }
 
   function Source({ children }) {
