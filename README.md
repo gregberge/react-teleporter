@@ -85,7 +85,7 @@ Use `useTargetRef` to create a custom target ref.
 const Teleporter = createTeleporter()
 
 function CustomTarget() {
-  const targetRef = useTargetRef()
+  const targetRef = Teleporter.useTargetRef()
   return <div ref={targetRef} />
 }
 ```
