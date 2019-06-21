@@ -17,4 +17,4 @@ Please provide an example for how this feature would be used.
 
 ## Pitch
 
-Why does this feature belong in the xstyled ecosystem?
+Why does this feature belong in the react-teleporter ecosystem?
