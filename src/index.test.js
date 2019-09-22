@@ -162,6 +162,42 @@ describe('teleporter', () => {
       rerender(<App hasSource={false} hasTarget />)
       expect(targetContainer).not.toHaveTextContent('Hello')
     })
+
+    it('supports source swapping', () => {
+      function App() {
+        const [source, setSource] = React.useState('A')
+        return (
+          <div>
+            <div data-testid="target">
+              <Teleporter.Target />
+            </div>
+            <button type="button" onClick={() => setSource('A')}>
+              Use A
+            </button>
+            <button type="button" onClick={() => setSource('B')}>
+              Use B
+            </button>
+            <div>
+              {source === 'A' && (
+                <Teleporter.Source>Source A</Teleporter.Source>
+              )}
+              {source === 'B' && (
+                <Teleporter.Source>Source B</Teleporter.Source>
+              )}
+            </div>
+          </div>
+        )
+      }
+      const { getByTestId, getByText } = render(<App hasSource hasTarget />)
+      const targetContainer = getByTestId('target')
+      const useABtn = getByText('Use A')
+      const useBBtn = getByText('Use B')
+      expect(targetContainer).toHaveTextContent('Source A')
+      fireEvent.click(useBBtn)
+      expect(targetContainer).toHaveTextContent('Source B')
+      fireEvent.click(useABtn)
+      expect(targetContainer).toHaveTextContent('Source A')
+    })
   })
 
   describe('multiple sources / targets', () => {

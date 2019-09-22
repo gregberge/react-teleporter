@@ -5,10 +5,9 @@ export function createTeleporter() {
   const context = {}
 
   function setElement(element) {
-    if (context.setElement) {
-      context.setElement(element)
-    } else {
-      context.element = element
+    context.value = element
+    if (context.set) {
+      context.set(element)
     }
   }
 
@@ -26,11 +25,11 @@ export function createTeleporter() {
   function Source({ children }) {
     const [element, setElement] = React.useState(null)
     React.useLayoutEffect(() => {
-      context.setElement = setElement
-      setElement(context.element)
+      context.set = setElement
+      setElement(context.value)
 
       return () => {
-        context.setElement = null
+        context.set = null
       }
     }, [])
     if (!element) return null
