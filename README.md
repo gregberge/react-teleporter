@@ -12,6 +12,7 @@
 Teleport React components in the same React tree.
 
 👉 [**Read how to use it to create scalable layouts**](https://gregberge.com/blog/react-scalable-layout)
+
 👉 [**Checkout the demo on CodeSandbox**](https://codesandbox.io/s/react-teleporter-demo-ryklv)
 
 ```bash
