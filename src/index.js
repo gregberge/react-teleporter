@@ -25,6 +25,10 @@ export function createTeleporter() {
   function Source({ children }) {
     const [element, setElement] = React.useState(null)
     React.useLayoutEffect(() => {
+      if (context.set) {
+        context.set(null)
+      }
+      
       context.set = setElement
       setElement(context.value)
 

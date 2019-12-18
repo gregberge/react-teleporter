@@ -201,7 +201,7 @@ describe('teleporter', () => {
   })
 
   describe('multiple sources / targets', () => {
-    it('handles multiple sources', () => {
+    it('takes only the latest defined source', () => {
       const Teleporter = createTeleporter()
 
       const { getByTestId } = render(
@@ -216,7 +216,7 @@ describe('teleporter', () => {
         </div>,
       )
 
-      expect(getByTestId('target')).toHaveTextContent('AB')
+      expect(getByTestId('target')).toHaveTextContent('B')
     })
 
     it('handles uses the latest target defined', () => {
