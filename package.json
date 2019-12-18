@@ -7,6 +7,10 @@
     "portal",
     "teleport"
   ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/gregberge"
+  },
   "main": "dist/react-teleporter.cjs.js",
   "module": "dist/react-teleporter.es.js",
   "license": "MIT",
