@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/smooth-code/react-teleporter/compare/v1.1.1...v2.0.0) (2019-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* If multiple sources are defined, only the deepest one in React tree will be rendered.
+
+### Features
+
+* render only the deepest source defined ([652b711](https://github.com/smooth-code/react-teleporter/commit/652b711))
+
 ### [1.1.1](https://github.com/smooth-code/react-teleporter/compare/v1.1.0...v1.1.1) (2019-09-22)
 
 
