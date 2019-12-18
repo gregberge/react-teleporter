@@ -219,6 +219,37 @@ describe('teleporter', () => {
       expect(getByTestId('target')).toHaveTextContent('B')
     })
 
+    it('takes uses the latest source if the new one is unmounted', () => {
+      const Teleporter = createTeleporter()
+
+      const { getByTestId, rerender } = render(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target />
+          </div>
+          <div>
+            <Teleporter.Source>A</Teleporter.Source>
+            <Teleporter.Source>B</Teleporter.Source>
+          </div>
+        </div>,
+      )
+
+      expect(getByTestId('target')).toHaveTextContent('B')
+
+      rerender(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target />
+          </div>
+          <div>
+            <Teleporter.Source>A</Teleporter.Source>
+          </div>
+        </div>,
+      )
+
+      expect(getByTestId('target')).toHaveTextContent('A')
+    })
+
     it('handles uses the latest target defined', () => {
       const Teleporter = createTeleporter()
 
