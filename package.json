@@ -15,6 +15,7 @@
   "repository": "git@github.com:gregberge/react-teleporter.git",
   "main": "dist/react-teleporter.cjs.js",
   "module": "dist/react-teleporter.es.js",
+  "types": "types/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
