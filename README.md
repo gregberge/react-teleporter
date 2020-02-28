@@ -94,6 +94,24 @@ function CustomTarget() {
 }
 ```
 
+### Use multiple sources
+
+By default only one `Source` is allowed to be injected into a `Target`. Sometimes you may want to inject multiple sources into a single target. Create teleporter with `{ multiSources: true }` option.
+
+```js
+const Teleporter = createTeleporter({ multiSources: true })
+
+<Teleporter.Source multiple>
+  <a href="#">A link</a>
+</Teleporter.Source>
+
+<Teleporter.Source multiple>
+  <a href="#">Another link</a>
+</Teleporter.Source>
+
+// The target will contains the two links
+```
+
 ## API
 
 ### createTeleporter

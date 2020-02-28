@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-export function createTeleporter() {
+export function createTeleporter({ multiSources } = {}) {
   const context = {}
 
   function setElement(element) {
@@ -30,7 +30,9 @@ export function createTeleporter() {
 
       if (context.set) {
         previousSet = context.set
-        context.set.current(null)
+        if (!multiSources) {
+          context.set.current(null)
+        }
       }
 
       context.set = setRef
