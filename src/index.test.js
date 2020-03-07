@@ -250,6 +250,24 @@ describe('teleporter', () => {
       expect(getByTestId('target')).toHaveTextContent('A')
     })
 
+    it('allows multiple sources using `multiSources` option', () => {
+      const Teleporter = createTeleporter({ multiSources: true })
+
+      const { getByTestId } = render(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target />
+          </div>
+          <div>
+            <Teleporter.Source>A</Teleporter.Source>
+            <Teleporter.Source>B</Teleporter.Source>
+          </div>
+        </div>,
+      )
+
+      expect(getByTestId('target')).toHaveTextContent('AB')
+    })
+
     it('handles uses the latest target defined', () => {
       const Teleporter = createTeleporter()
 
