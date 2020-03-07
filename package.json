@@ -1,7 +1,7 @@
 {
   "name": "react-teleporter",
   "description": "Teleport React components in the same React tree.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "keywords": [
     "react",
     "portal",

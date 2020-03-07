@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/gregberge/react-teleporter/compare/v2.0.1...v2.1.0) (2020-03-07)
+
+
+### Features
+
+* add multiple sources support ([#16](https://github.com/gregberge/react-teleporter/issues/16)) ([a0c5239](https://github.com/gregberge/react-teleporter/commit/a0c5239438aa9b8ef4274cb4d9701996e916eaa6))
+* add typescript declaration ([#14](https://github.com/gregberge/react-teleporter/issues/14)) ([13185db](https://github.com/gregberge/react-teleporter/commit/13185dbdb370376bee57d149c550c1f9b1dc3791))
+
 ### [2.0.1](https://github.com/gregberge/react-teleporter/compare/v2.0.0...v2.0.1) (2019-12-18)
 
 
