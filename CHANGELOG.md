@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/gregberge/react-teleporter/compare/v2.1.0...v2.1.1) (2020-03-19)
+
+
+### Bug Fixes
+
+* **typings:** add multiSources option ([#19](https://github.com/gregberge/react-teleporter/issues/19)) ([32af8b4](https://github.com/gregberge/react-teleporter/commit/32af8b422cdc366d1a5b5c03fc15c341efaece98))
+
 ## [2.1.0](https://github.com/gregberge/react-teleporter/compare/v2.0.1...v2.1.0) (2020-03-07)
 
 
