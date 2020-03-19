@@ -1,7 +1,9 @@
 import * as React from 'react'
 
 interface TargetComponentType {
-  <C extends React.ElementType = 'div'>(props: { as?: C } & Omit<React.ComponentPropsWithoutRef<C>, 'as'>): JSX.Element
+  <C extends React.ElementType = 'div'>(
+    props: { as?: C } & Omit<React.ComponentPropsWithoutRef<C>, 'as'>,
+  ): JSX.Element
 }
 
 export interface TeleporterType {
@@ -10,4 +12,8 @@ export interface TeleporterType {
   useTargetRef(): (element: Element | null) => void
 }
 
-export function createTeleporter(): TeleporterType
+export interface TeleporterOptions {
+  multiSources?: boolean
+}
+
+export function createTeleporter(options?: TeleporterOptions): TeleporterType
