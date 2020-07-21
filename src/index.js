@@ -12,9 +12,7 @@ export function createTeleporter({ multiSources } = {}) {
   }
 
   function useTargetRef() {
-    return React.useCallback(element => {
-      setElement(element)
-    }, [])
+    return setElement
   }
 
   function Target({ as: As = 'div', ...props }) {
