@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/gregberge/react-teleporter/compare/v2.1.1...v2.2.0) (2021-03-27)
+
+
+### Features
+
+* target React 17 as peer dep ([4da370e](https://github.com/gregberge/react-teleporter/commit/4da370ee8b81fd261d3c6255fbc9c43115355ce4)), closes [#28](https://github.com/gregberge/react-teleporter/issues/28)
+
 ### [2.1.1](https://github.com/gregberge/react-teleporter/compare/v2.1.0...v2.1.1) (2020-03-19)
 
 
