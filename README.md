@@ -1,12 +1,10 @@
 # react-teleporter
 
-[![License](https://img.shields.io/npm/l/react-teleporter.svg)](https://github.com/gregberge/react-teleporter/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/react-teleporter.svg)](https://github.com/gregberge/react-teleporter/blob/main/LICENSE)
 [![npm package](https://img.shields.io/npm/v/react-teleporter/latest.svg)](https://www.npmjs.com/package/react-teleporter)
-[![CircleCI](https://circleci.com/gh/gregberge/react-teleporter/tree/master.svg?style=svg)](https://circleci.com/gh/gregberge/react-teleporter/tree/master)
-[![codecov](https://codecov.io/gh/gregberge/react-teleporter/branch/master/graph/badge.svg)](https://codecov.io/gh/gregberge/react-teleporter)
+[![CircleCI](https://circleci.com/gh/gregberge/react-teleporter/tree/main.svg?style=svg)](https://circleci.com/gh/gregberge/react-teleporter/tree/main)
+[![codecov](https://codecov.io/gh/gregberge/react-teleporter/branch/main/graph/badge.svg)](https://codecov.io/gh/gregberge/react-teleporter)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
-[![Dependencies](https://img.shields.io/david/gregberge/react-teleporter.svg)](https://david-dm.org/gregberge/react-teleporter)
-[![DevDependencies](https://img.shields.io/david/dev/gregberge/react-teleporter.svg)](https://david-dm.org/gregberge/react-teleporter?type=dev)
 [![Small size](https://img.badgesize.io/https://unpkg.com/react-teleporter/dist/react-teleporter.min.js?compression=gzip)](https://unpkg.com/react-teleporter/dist/react-teleporter.min.js)
 
 Teleport React components in the same React tree.
