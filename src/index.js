@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 export function createTeleporter({ multiSources } = {}) {
   const context = {}
 
-  function setElement(element) {
+  function targetRef(element) {
     context.value = element
     if (context.set && context.set.current) {
       context.set.current(element)
@@ -12,12 +12,11 @@ export function createTeleporter({ multiSources } = {}) {
   }
 
   function useTargetRef() {
-    return setElement
+    return targetRef
   }
 
   function Target({ as: As = 'div', ...props }) {
-    const handleRef = useTargetRef()
-    return <As ref={handleRef} {...props} />
+    return <As ref={targetRef} {...props} />
   }
 
   function Source({ children }) {
