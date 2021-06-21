@@ -16,8 +16,7 @@ export function createTeleporter({ multiSources } = {}) {
   }
 
   function Target({ as: As = 'div', ...props }) {
-    const handleRef = useTargetRef()
-    return <As ref={handleRef} {...props} />
+    return <As ref={setElement} {...props} />
   }
 
   function Source({ children }) {
