@@ -17,7 +17,7 @@ const buildName = pkg.name
 const SOURCE_DIR = path.resolve(__dirname, 'src')
 const DIST_DIR = path.resolve(__dirname, 'dist')
 const input = `${SOURCE_DIR}/index.js`
-const external = id => !id.startsWith('.') && !id.startsWith('/')
+const external = (id) => !id.startsWith('.') && !id.startsWith('/')
 const getBabelOptions = ({ useESModules }) => ({
   exclude: '**/node_modules/**',
   runtimeHelpers: true,

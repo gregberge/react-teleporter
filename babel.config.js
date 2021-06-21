@@ -1,5 +1,5 @@
 /* eslint-env node */
-module.exports = api => {
+module.exports = (api) => {
   api.cache(true)
 
   if (process.env.NODE_ENV === 'test') {
