@@ -1,3 +1,6 @@
+/* eslint-disable react/display-name */
+/* eslint-env jest */
+
 import React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'

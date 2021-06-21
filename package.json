@@ -13,6 +13,7 @@
     "url": "https://github.com/sponsors/gregberge"
   },
   "repository": "git@github.com:gregberge/react-teleporter.git",
+  "sideEffects": false,
   "main": "dist/react-teleporter.cjs.js",
   "module": "dist/react-teleporter.es.js",
   "types": "types/index.d.ts",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.5",
     "@babel/plugin-transform-modules-commonjs": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
@@ -43,11 +45,7 @@
     "codecov": "^3.8.2",
     "conventional-github-releaser": "^3.1.3",
     "eslint": "^7.29.0",
-    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-smooth": "^2.0.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^27.0.4",

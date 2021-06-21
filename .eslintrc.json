@@ -1,9 +1,21 @@
 {
   "root": true,
-  "extends": ["smooth", "smooth/project", "smooth/react"],
+  "env": {
+    "browser": true
+  },
+  "parser": "@babel/eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
   "rules": {
-    "no-plusplus": "off",
-    "import/no-extraneous-dependencies": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
