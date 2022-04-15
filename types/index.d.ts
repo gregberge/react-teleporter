@@ -6,8 +6,10 @@ interface TargetComponentType {
   ): JSX.Element
 }
 
+type SourceComponentType = React.ComponentType<{ children?: React.ReactNode }>
+
 export interface TeleporterType {
-  Source: React.ComponentType
+  Source: SourceComponentType
   Target: TargetComponentType
   useTargetRef(): (element: Element | null) => void
 }
