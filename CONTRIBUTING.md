@@ -2,9 +2,9 @@
 
 Smooth UI is a small project, it is widely used but has not a lot of contributors. We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
-## [Code of Conduct](https://github.com/smooth-code/smooth-ui/blob/main/CODE_OF_CONDUCT.md)
+## [Code of Conduct](https://github.com/gregberge/react-teleporter/blob/main/CODE_OF_CONDUCT.md)
 
-We expect project participants to adhere to our Code of Conduct. Please read [the full text](https://github.com/smooth-code/smooth-ui/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+We expect project participants to adhere to our Code of Conduct. Please read [the full text](https://github.com/gregberge/react-teleporter/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## Open Development
 
@@ -19,41 +19,27 @@ _Before_ submitting a pull request, please make sure the following is done…
     Open terminal (e.g. Terminal, iTerm, Git Bash or Git Shell) and type:
 
     ```sh-session
-    $ git clone https://github.com/<your_username>/smooth-ui
-    $ cd smooth-ui
+    $ git clone https://github.com/gregberge/react-teleporter
+    $ cd react-teleporter
     $ git checkout -b my_branch
     ```
 
-    Note: Replace `<your_username>` with your GitHub username
+2.  Run `npm install`
 
-2.  This project uses [Yarn](https://code.fb.com/web/yarn-a-new-package-manager-for-javascript/) for running development scripts. If you haven't already done so, please [install yarn](https://yarnpkg.com/en/docs/install).
+3.  If you've added code that should be tested, add tests.
 
-3.  Run `yarn install`. On Windows: To install [Yarn](https://yarnpkg.com/en/docs/install#windows-tab) on Windows you may need to download either node.js or Chocolatey<br />
+4.  If you've changed APIs, update the documentation.
 
-    ```sh
-    yarn install
-    ```
-
-    To check your version of Yarn and ensure it's installed you can type:
-
-    ```sh
-    yarn --version
-    ```
-
-4.  If you've added code that should be tested, add tests.
-
-5.  If you've changed APIs, update the documentation.
-
-6.  Ensure the linting is good via `yarn lint`.
+5.  Ensure the linting is good via `npm run lint`.
 
     ```sh-session
-    $ yarn lint
+    $ npm run lint
     ```
 
-7.  Ensure the test suite passes via `yarn test`.
+6.  Ensure the test suite passes via `npm run test`.
 
     ```sh-session
-    $ yarn test
+    $ npm run test
     ```
 
 ## Bugs
@@ -65,10 +51,6 @@ We will be using GitHub Issues for our public bugs. We will keep a close eye on 
 ### Reporting New Issues
 
 The best way to get your bug fixed is to provide a reduced test case. Please provide a public repository with a runnable example.
-
-## Code Conventions
-
-Please follow the `.prettierrc` in the project.
 
 ## License
 

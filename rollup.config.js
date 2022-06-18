@@ -1,16 +1,16 @@
-import dts from 'rollup-plugin-dts'
-import esbuild from 'rollup-plugin-esbuild'
+import dts from "rollup-plugin-dts";
+import esbuild from "rollup-plugin-esbuild";
 
 const bundle = (config) => ({
   ...config,
-  input: 'src/index.tsx',
+  input: "src/index.tsx",
   external: (id) => !/^[./]/.test(id),
-})
+});
 
 const esbuildConfig = {
-  target: 'es2022',
+  target: "es2022",
   minify: true,
-}
+};
 
 export default [
   bundle({
@@ -18,7 +18,7 @@ export default [
     output: [
       {
         file: `dist/index.mjs`,
-        format: 'es',
+        format: "es",
         sourcemap: true,
       },
     ],
@@ -27,7 +27,7 @@ export default [
     plugins: [dts()],
     output: {
       file: `dist/index.d.ts`,
-      format: 'es',
+      format: "es",
     },
   }),
-]
+];

@@ -17,16 +17,16 @@ npm install react-teleporter
 ## Example
 
 ```js
-import { createTeleporter } from 'react-teleporter'
+import { createTeleporter } from "react-teleporter";
 
-const StatusBar = createTeleporter()
+const StatusBar = createTeleporter();
 
 function Header() {
   return (
     <header>
       <StatusBar.Target />
     </header>
-  )
+  );
 }
 
 function Page() {
@@ -35,7 +35,7 @@ function Page() {
       {/* Teleport "Loading..." into the header */}
       <StatusBar.Source>Loading...</StatusBar.Source>
     </main>
-  )
+  );
 }
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
       <Header />
       <Page />
     </div>
-  )
+  );
 }
 ```
 
@@ -81,11 +81,11 @@ const Teleporter = createTeleporter()
 Use `useTargetRef` to create a custom target ref.
 
 ```js
-const Teleporter = createTeleporter()
+const Teleporter = createTeleporter();
 
 function CustomTarget() {
-  const targetRef = Teleporter.useTargetRef()
-  return <div ref={targetRef} />
+  const targetRef = Teleporter.useTargetRef();
+  return <div ref={targetRef} />;
 }
 ```
 
@@ -114,7 +114,7 @@ const Teleporter = createTeleporter({ multiSources: true })
 `createTeleporter` is the only method exposed by this package. It returns an object containing a `Target`, a `Source` and a `useTargetRef` to create a custom target.
 
 ```js
-import { createTeleporter } from 'react-teleporter'
+import { createTeleporter } from "react-teleporter";
 
-const Teleporter = createTeleporter()
+const Teleporter = createTeleporter();
 ```
