@@ -1,10 +1,9 @@
-/* eslint-disable react/display-name */
 /* eslint-env jest */
 
-import React from 'react'
+import * as React from 'react'
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import { createTeleporter } from './index'
+import { createTeleporter, Teleporter as TypeTeleporter } from './index'
 
 afterEach(cleanup)
 
@@ -28,9 +27,9 @@ describe('teleporter', () => {
 
   it('teleports context', () => {
     const Teleporter = createTeleporter()
-    const SimpleContext = React.createContext()
-    function SimpleContextDump() {
-      return React.useContext(SimpleContext)
+    const SimpleContext = React.createContext<string>('')
+    const SimpleContextDump: React.FC = () => {
+      return <>{React.useContext(SimpleContext)}</>
     }
 
     const { getByTestId } = render(
@@ -66,6 +65,7 @@ describe('teleporter', () => {
     )
 
     expect(getByTestId('target')).toHaveTextContent('Hello')
+    // @ts-ignore
     expect(getByTestId('target').firstChild.tagName).toBe('HEADER')
   })
 
@@ -86,6 +86,7 @@ describe('teleporter', () => {
 
     const targetContainer = getByTestId('target')
     expect(targetContainer).toHaveTextContent('Hello')
+    // @ts-ignore
     fireEvent.click(targetContainer.firstChild)
     expect(clickSpy).toHaveBeenCalled()
   })
@@ -110,12 +111,13 @@ describe('teleporter', () => {
     )
 
     expect(getByTestId('target')).toHaveTextContent('Hello')
+    // @ts-ignore
     expect(getByTestId('target').firstChild.tagName).toBe('SECTION')
   })
 
   describe('mount order', () => {
-    let Teleporter
-    let App
+    let Teleporter: TypeTeleporter
+    let App: React.FC<{ hasTarget: boolean; hasSource: boolean }>
     beforeEach(() => {
       Teleporter = createTeleporter()
       App = ({ hasTarget, hasSource }) => {
@@ -191,7 +193,7 @@ describe('teleporter', () => {
           </div>
         )
       }
-      const { getByTestId, getByText } = render(<App hasSource hasTarget />)
+      const { getByTestId, getByText } = render(<App />)
       const targetContainer = getByTestId('target')
       const useABtn = getByText('Use A')
       const useBBtn = getByText('Use B')

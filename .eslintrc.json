@@ -7,8 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react-hooks/recommended",
-    "plugin:react/recommended",
-    "prettier"
+    "plugin:react/recommended"
   ],
   "rules": {
     "react/prop-types": "off"
