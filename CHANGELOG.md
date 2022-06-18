@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/gregberge/react-teleporter/compare/v2.2.1...v3.0.0) (2022-06-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* - Types have changed
+- Expose ESM only
+
+### Features
+
+* modernize project ([e62ce04](https://github.com/gregberge/react-teleporter/commit/e62ce0464b379ec8185de0f0e1fddd938589da86))
+* support React 18 ([#42](https://github.com/gregberge/react-teleporter/issues/42)) ([de09203](https://github.com/gregberge/react-teleporter/commit/de09203439e282e2bbd362d113bf0425c1b3e2c7))
+
 ### [2.2.1](https://github.com/gregberge/react-teleporter/compare/v2.2.0...v2.2.1) (2021-06-21)
 
 ## [2.2.0](https://github.com/gregberge/react-teleporter/compare/v2.1.1...v2.2.0) (2021-03-27)
