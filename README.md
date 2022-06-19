@@ -2,6 +2,8 @@
 
 [![License](https://img.shields.io/npm/l/react-teleporter.svg)](https://github.com/gregberge/react-teleporter/blob/main/LICENSE)
 [![npm package](https://img.shields.io/npm/v/react-teleporter/latest.svg)](https://www.npmjs.com/package/react-teleporter)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-teleporter)](https://bundlephobia.com/package/react-teleporter)
+[![CI](https://github.com/gregberge/react-teleporter/actions/workflows/ci.yml/badge.svg)](https://github.com/gregberge/react-teleporter/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/gregberge/react-teleporter/branch/main/graph/badge.svg)](https://codecov.io/gh/gregberge/react-teleporter)
 
 Teleport React components in the same React tree.
