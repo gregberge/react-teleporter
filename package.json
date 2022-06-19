@@ -4,8 +4,8 @@
   "version": "3.0.1",
   "sideEffects": false,
   "type": "module",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
