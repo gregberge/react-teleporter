@@ -53,7 +53,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * display latest source if the next one is unmounted ([2fc423d](https://github.com/gregberge/react-teleporter/commit/2fc423dc6264d4f065480c80c102106a4ca994ea))
 
-## [2.0.0](https://github.com/smooth-code/react-teleporter/compare/v1.1.1...v2.0.0) (2019-12-18)
+## [2.0.0](https://github.com/gregberge/react-teleporter/compare/v1.1.1...v2.0.0) (2019-12-18)
 
 
 ### ⚠ BREAKING CHANGES
@@ -62,21 +62,21 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* render only the deepest source defined ([652b711](https://github.com/smooth-code/react-teleporter/commit/652b711))
+* render only the deepest source defined ([652b711](https://github.com/gregberge/react-teleporter/commit/652b711))
 
-### [1.1.1](https://github.com/smooth-code/react-teleporter/compare/v1.1.0...v1.1.1) (2019-09-22)
+### [1.1.1](https://github.com/gregberge/react-teleporter/compare/v1.1.0...v1.1.1) (2019-09-22)
 
 
 ### Bug Fixes
 
-* fix issue on target swapping ([9a5611e](https://github.com/smooth-code/react-teleporter/commit/9a5611e)), closes [#11](https://github.com/smooth-code/react-teleporter/issues/11)
+* fix issue on target swapping ([9a5611e](https://github.com/gregberge/react-teleporter/commit/9a5611e)), closes [#11](https://github.com/gregberge/react-teleporter/issues/11)
 
-## [1.1.0](https://github.com/smooth-code/react-teleporter/compare/v1.0.0...v1.1.0) (2019-06-12)
+## [1.1.0](https://github.com/gregberge/react-teleporter/compare/v1.0.0...v1.1.0) (2019-06-12)
 
 
 ### Features
 
-* forward props on Target ([8b647c6](https://github.com/smooth-code/react-teleporter/commit/8b647c6)), closes [#3](https://github.com/smooth-code/react-teleporter/issues/3)
+* forward props on Target ([8b647c6](https://github.com/gregberge/react-teleporter/commit/8b647c6)), closes [#3](https://github.com/gregberge/react-teleporter/issues/3)
 
 
 
@@ -85,4 +85,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* first version ([aa19c35](https://github.com/smooth-code/react-teleporter/commit/aa19c35))
+* first version ([aa19c35](https://github.com/gregberge/react-teleporter/commit/aa19c35))
