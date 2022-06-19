@@ -1,4 +1,3 @@
 /*
-!/dist/**/*.js
-!/types/**/*.d.ts
-*.test.js
+!/dist/**/*.{ts,js,map}
+**/*.test.tsx?
