@@ -1,6 +1,6 @@
 # How to Contribute
 
-Smooth UI is a small project, it is widely used but has not a lot of contributors. We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
+It is a small project, it is widely used but has not a lot of contributors. We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
 ## [Code of Conduct](https://github.com/gregberge/react-teleporter/blob/main/CODE_OF_CONDUCT.md)
 
@@ -8,7 +8,7 @@ We expect project participants to adhere to our Code of Conduct. Please read [th
 
 ## Open Development
 
-All work on Smooth UI happens directly on [GitHub](/). Both core team members and external contributors send pull requests which go through the same review process.
+All work on this project happens directly on [GitHub](/). Both core team members and external contributors send pull requests which go through the same review process.
 
 ### Workflow and Pull Requests
 
