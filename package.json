@@ -1,7 +1,7 @@
 {
   "name": "react-teleporter",
   "description": "Teleport React components in the same React tree.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "sideEffects": false,
   "type": "module",
   "module": "./dist/index.mjs",

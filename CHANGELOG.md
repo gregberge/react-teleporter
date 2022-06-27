@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/gregberge/react-teleporter/compare/v3.0.1...v3.0.2) (2022-06-27)
+
+
+### Bug Fixes
+
+* **esm:** add default export to maximize compat ([f193c12](https://github.com/gregberge/react-teleporter/commit/f193c129ba38c234df23023ceef8b916a9661d7f))
+
 ### [3.0.1](https://github.com/gregberge/react-teleporter/compare/v3.0.0...v3.0.1) (2022-06-19)
 
 
