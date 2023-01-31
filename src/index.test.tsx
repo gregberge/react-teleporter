@@ -295,7 +295,26 @@ describe("teleporter", () => {
     });
   });
 
-  describe("events from Source", () => {
+  describe("Source", () => {
+    it("wraps its content in an 'unboxed' div", () => {
+      const Teleporter = createTeleporter();
+
+      const { getByText } = render(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target as="header" />
+          </div>
+          <div>
+            <Teleporter.Source>Hello</Teleporter.Source>
+          </div>
+        </div>
+      );
+
+      const sourceContent = getByText("Hello");
+      const sourceContentWrapper = sourceContent.closest("div");
+      expect(sourceContentWrapper).toHaveStyle("display: contents;");
+    });
+
     it("forwards click event to Target", () => {
       const Teleporter = createTeleporter();
       const clickSpy = jest.fn();

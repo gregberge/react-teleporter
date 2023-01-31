@@ -50,6 +50,17 @@ export const createTeleporter = ({
 
   const useTargetRef = () => setElement;
 
+  const SourceWrapper: React.FC<React.DOMAttributes<HTMLElement>> = ({
+    children,
+    ...props
+  }) => {
+    return (
+      <div {...props} style={{ display: "contents" }}>
+        {children}
+      </div>
+    );
+  };
+
   const Target = ({ as: As = "div", ...props }: PropsWithAs<{}, "div">) => {
     return <As ref={setElement} {...props} />;
   };
@@ -85,10 +96,15 @@ export const createTeleporter = ({
         }
       };
     }, []);
+
     if (!element) return null;
     const handleClick = (e: React.SyntheticEvent) =>
       element.dispatchEvent(new Event(e.type, e));
-    return ReactDOM.createPortal(<div onClick={handleClick}>{children}</div>, element);
+
+    return ReactDOM.createPortal(
+      <SourceWrapper onClick={handleClick}>{children}</SourceWrapper>,
+      element
+    );
   };
 
   return { Source, Target, useTargetRef };
