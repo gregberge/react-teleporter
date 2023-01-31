@@ -315,32 +315,59 @@ describe("teleporter", () => {
       expect(sourceContentWrapper).toHaveStyle("display: contents;");
     });
 
-    it("forwards click event to Target", () => {
-      const Teleporter = createTeleporter();
-      const clickSpy = jest.fn();
+    it("forwards given events to Target", () => {
+      const Teleporter = createTeleporter({
+        forwardToTarget: ["onClick", "onMouseOver"],
+      });
+      const onClickSpy = jest.fn();
+      const onKeyDownSpy = jest.fn();
+      const onMouseOverSpy = jest.fn();
       const clickHandlerSpy = jest.fn();
+      const mouseOverHandlerSpy = jest.fn();
+      const keyDownHandlerSpy = jest.fn();
 
-      const { getByText } = render(
+      const { getByText, getByRole } = render(
         <div>
           <div data-testid="target">
-            <Teleporter.Target as="header" onClick={clickHandlerSpy} />
+            <Teleporter.Target
+              as="header"
+              onClick={clickHandlerSpy}
+              onMouseOver={mouseOverHandlerSpy}
+              onKeyDown={keyDownHandlerSpy}
+            />
           </div>
           <div>
             <Teleporter.Source>
-              <ul>
-                <li>
-                  <a onClick={clickSpy}>Link from source</a>
-                </li>
-              </ul>
+              <form>
+                <label htmlFor="username" onMouseOver={onMouseOverSpy}>
+                  Username
+                </label>
+                <input id="username" type="text" onKeyDown={onKeyDownSpy} />
+                <button type="submit" onClick={onClickSpy}>
+                  Send
+                </button>
+              </form>
             </Teleporter.Source>
           </div>
         </div>
       );
 
-      const link = getByText("Link from source");
-      // @ts-ignore
-      fireEvent.click(link);
-      expect(clickSpy).toHaveBeenCalled();
+      const label = getByText("Username");
+      const input = getByRole("textbox", { name: "Username" });
+      const submitAction = getByRole("button", { name: "Send" });
+
+      fireEvent.mouseOver(label);
+      expect(onMouseOverSpy).toHaveBeenCalled();
+      expect(mouseOverHandlerSpy).toHaveBeenCalled();
+
+      fireEvent.keyDown(input, { key: "A" });
+      expect(onKeyDownSpy).toHaveBeenCalled();
+      // Please, note that the example was created for fowarding only the onClick and onMouseOver
+      // evnets, eventhough the Target is "listening" keyDown events too.
+      expect(keyDownHandlerSpy).not.toHaveBeenCalled();
+
+      fireEvent.click(submitAction);
+      expect(onClickSpy).toHaveBeenCalled();
       expect(clickHandlerSpy).toHaveBeenCalled();
     });
   });

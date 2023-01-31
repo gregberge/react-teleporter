@@ -24,6 +24,7 @@ interface Context {
 
 export interface CreateTeleporterOptions {
   multiSources?: Boolean;
+  forwardToTarget?: string[];
 }
 
 export interface TargetRef {
@@ -38,6 +39,7 @@ export interface Teleporter {
 
 export const createTeleporter = ({
   multiSources,
+  forwardToTarget = [],
 }: CreateTeleporterOptions = {}): Teleporter => {
   const context: Context = { element: null, set: null };
 
@@ -98,11 +100,20 @@ export const createTeleporter = ({
     }, []);
 
     if (!element) return null;
-    const handleClick = (e: React.SyntheticEvent) =>
+
+    const handleEvent = (e: React.SyntheticEvent) =>
       element.dispatchEvent(new Event(e.type, e));
 
+    const eventHandlersProps: {
+      [key: string]: React.EventHandler<React.SyntheticEvent>;
+    } = {};
+
+    forwardToTarget.forEach(
+      (eventName: string) => (eventHandlersProps[eventName] = handleEvent)
+    );
+
     return ReactDOM.createPortal(
-      <SourceWrapper onClick={handleClick}>{children}</SourceWrapper>,
+      <SourceWrapper {...eventHandlersProps}>{children}</SourceWrapper>,
       element
     );
   };
