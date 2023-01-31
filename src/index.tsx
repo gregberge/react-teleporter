@@ -86,7 +86,8 @@ export const createTeleporter = ({
       };
     }, []);
     if (!element) return null;
-    return ReactDOM.createPortal(children, element);
+    const handleClick = (e) => element.dispatchEvent(new Event(e.type, e));
+    return ReactDOM.createPortal(<div onClick={handleClick}>{children}</div>, element);
   };
 
   return { Source, Target, useTargetRef };

@@ -294,4 +294,35 @@ describe("teleporter", () => {
       expect(getByTestId("targetB")).toHaveTextContent("A");
     });
   });
+
+  describe("events from Source", () => {
+    it("forwards click event to Target", () => {
+      const Teleporter = createTeleporter();
+      const clickSpy = jest.fn();
+      const clickHandlerSpy = jest.fn();
+
+      const { getByText } = render(
+        <div>
+          <div data-testid="target">
+            <Teleporter.Target as="header" onClick={clickHandlerSpy} />
+          </div>
+          <div>
+            <Teleporter.Source>
+              <ul>
+                <li>
+                  <a onClick={clickSpy}>Link from source</a>
+                </li>
+              </ul>
+            </Teleporter.Source>
+          </div>
+        </div>
+      );
+
+      const link = getByText("Link from source");
+      // @ts-ignore
+      fireEvent.click(link);
+      expect(clickSpy).toHaveBeenCalled();
+      expect(clickHandlerSpy).toHaveBeenCalled();
+    });
+  });
 });
