@@ -343,8 +343,8 @@ describe("teleporter", () => {
                   Username
                 </label>
                 <input id="username" type="text" onKeyDown={onKeyDownSpy} />
-                <button type="submit" onClick={onClickSpy}>
-                  Send
+                <button type="reset" onClick={onClickSpy}>
+                  Reset
                 </button>
               </form>
             </Teleporter.Source>
@@ -354,7 +354,7 @@ describe("teleporter", () => {
 
       const label = getByText("Username");
       const input = getByRole("textbox", { name: "Username" });
-      const submitAction = getByRole("button", { name: "Send" });
+      const resetAction = getByRole("button", { name: "Reset" });
 
       fireEvent.mouseOver(label);
       expect(onMouseOverSpy).toHaveBeenCalled();
@@ -362,11 +362,10 @@ describe("teleporter", () => {
 
       fireEvent.keyDown(input, { key: "A" });
       expect(onKeyDownSpy).toHaveBeenCalled();
-      // Please, note that the example was created for fowarding only the onClick and onMouseOver
-      // evnets, eventhough the Target is "listening" keyDown events too.
+      // While the Target is listening to the onKeyDown event as well, the example teleporter only forwards the onClick and onMouseOver events.
       expect(keyDownHandlerSpy).not.toHaveBeenCalled();
 
-      fireEvent.click(submitAction);
+      fireEvent.click(resetAction);
       expect(onClickSpy).toHaveBeenCalled();
       expect(clickHandlerSpy).toHaveBeenCalled();
     });
