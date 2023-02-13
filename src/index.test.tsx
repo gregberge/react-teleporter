@@ -69,6 +69,24 @@ describe("teleporter", () => {
     expect(getByTestId("target").firstChild.tagName).toBe("HEADER");
   });
 
+  it("supports function as children on source", () => {
+    const Teleporter = createTeleporter();
+    const sourceContent = (target: Element): React.ReactNode => (
+      <p>Hello from {target.id}!</p>
+    );
+
+    const { getByRole } = render(
+      <div>
+        <Teleporter.Target as="header" id="Target Element" />
+        <div>
+          <Teleporter.Source>{sourceContent}</Teleporter.Source>
+        </div>
+      </div>
+    );
+
+    expect(getByRole("banner")).toHaveTextContent("Hello from Target Element!");
+  });
+
   it("forwards props to Target", () => {
     const Teleporter = createTeleporter();
     const clickSpy = jest.fn();

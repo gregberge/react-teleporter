@@ -22,6 +22,8 @@ interface Context {
   set: TargetRefRef | null;
 }
 
+type ChildrenFunction = (target: Element) => React.ReactNode;
+
 export interface CreateTeleporterOptions {
   multiSources?: Boolean;
 }
@@ -31,7 +33,7 @@ export interface TargetRef {
 }
 
 export interface Teleporter {
-  Source: React.FC<{ children: React.ReactNode }>;
+  Source: React.FC<{ children: React.ReactNode | ChildrenFunction }>;
   Target: ComponentWithAs<{}, "div">;
   useTargetRef: () => TargetRef;
 }
@@ -54,7 +56,11 @@ export const createTeleporter = ({
     return <As ref={setElement} {...props} />;
   };
 
-  const Source = ({ children }: { children: React.ReactNode }) => {
+  const Source = ({
+    children,
+  }: {
+    children: React.ReactNode | ChildrenFunction;
+  }) => {
     const [element, setElement] = React.useState<Element | null>(null);
 
     React.useLayoutEffect(() => {
@@ -86,7 +92,9 @@ export const createTeleporter = ({
       };
     }, []);
     if (!element) return null;
-    return ReactDOM.createPortal(children, element);
+    const content =
+      typeof children === "function" ? children(element) : children;
+    return ReactDOM.createPortal(content, element);
   };
 
   return { Source, Target, useTargetRef };
