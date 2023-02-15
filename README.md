@@ -114,11 +114,14 @@ const Teleporter = createTeleporter({ multiSources: true })
 Useful for having access to the `Target` element. E.g., to dispatch an event through the `Target` when something happens in the `Source`.
 
 ```js
-const forwardEvent = element => event => element.dispatch(new Event(event.type, event));
+const Teleporter = createTeleporter();
 
-<Source>
-  {element => <div onClick={forwardEvent(element)}></div>}
-</Source>
+const forwardEvent = (element) => (event) =>
+  element.dispatch(new Event(event.type, event));
+
+<Teleporter.Source>
+  {(element) => <div onClick={forwardEvent(element)}></div>}
+</Teleporter.Source>;
 ```
 
 ## API
