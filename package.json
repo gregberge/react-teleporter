@@ -45,6 +45,7 @@
     "@babel/preset-typescript": "^7.17.12",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.4.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.5.0",
