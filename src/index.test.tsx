@@ -1,9 +1,19 @@
 /* eslint-env jest */
 
 import * as React from "react";
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
+import { render as reactRender, cleanup } from "@testing-library/react";
 import { createTeleporter, Teleporter as TypeTeleporter } from "./index";
+
+// Setup function, see https://testing-library.com/docs/user-event/intro
+const render = (jsx: React.ReactElement) => {
+  return {
+    user: userEvent.setup(),
+    ...reactRender(jsx),
+  };
+};
 
 afterEach(cleanup);
 
@@ -11,7 +21,7 @@ describe("teleporter", () => {
   it("teleports any children into target", () => {
     const Teleporter = createTeleporter();
 
-    const { getByTestId } = render(
+    render(
       <div>
         <div data-testid="target">
           <Teleporter.Target />
@@ -22,7 +32,7 @@ describe("teleporter", () => {
       </div>
     );
 
-    expect(getByTestId("target")).toHaveTextContent("Hello");
+    expect(screen.getByTestId("target")).toHaveTextContent("Hello");
   });
 
   it("teleports context", () => {
@@ -32,7 +42,7 @@ describe("teleporter", () => {
       return <>{React.useContext(SimpleContext)}</>;
     };
 
-    const { getByTestId } = render(
+    render(
       <div>
         <div data-testid="target">
           <Teleporter.Target />
@@ -47,7 +57,7 @@ describe("teleporter", () => {
       </div>
     );
 
-    expect(getByTestId("target")).toHaveTextContent("Hello");
+    expect(screen.getByTestId("target")).toHaveTextContent("Hello");
   });
 
   it('supports "as" on target', () => {
@@ -75,7 +85,7 @@ describe("teleporter", () => {
       <p>Hello from {target.id}!</p>
     );
 
-    const { getByRole } = render(
+    render(
       <div>
         <Teleporter.Target as="header" id="Target Element" />
         <div>
@@ -84,14 +94,16 @@ describe("teleporter", () => {
       </div>
     );
 
-    expect(getByRole("banner")).toHaveTextContent("Hello from Target Element!");
+    expect(screen.getByRole("banner")).toHaveTextContent(
+      "Hello from Target Element!"
+    );
   });
 
-  it("forwards props to Target", () => {
+  it("forwards props to Target", async () => {
     const Teleporter = createTeleporter();
     const clickSpy = jest.fn();
 
-    const { getByTestId } = render(
+    const { user } = render(
       <div>
         <div data-testid="target">
           <Teleporter.Target as="header" onClick={clickSpy} />
@@ -102,10 +114,10 @@ describe("teleporter", () => {
       </div>
     );
 
-    const targetContainer = getByTestId("target");
+    const targetContainer = screen.getByTestId("target");
     expect(targetContainer).toHaveTextContent("Hello");
     // @ts-ignore
-    fireEvent.click(targetContainer.firstChild);
+    await user.click(targetContainer.firstChild);
     expect(clickSpy).toHaveBeenCalled();
   });
 
@@ -117,7 +129,7 @@ describe("teleporter", () => {
       return <section ref={ref} />;
     }
 
-    const { getByTestId } = render(
+    render(
       <div>
         <div data-testid="target">
           <CustomTarget />
@@ -128,9 +140,9 @@ describe("teleporter", () => {
       </div>
     );
 
-    expect(getByTestId("target")).toHaveTextContent("Hello");
+    expect(screen.getByTestId("target")).toHaveTextContent("Hello");
     // @ts-ignore
-    expect(getByTestId("target").firstChild.tagName).toBe("SECTION");
+    expect(screen.getByTestId("target").firstChild.tagName).toBe("SECTION");
   });
 
   describe("mount order", () => {
@@ -151,42 +163,38 @@ describe("teleporter", () => {
     });
 
     it("supports target late mount", () => {
-      const { getByTestId, rerender } = render(
-        <App hasSource hasTarget={false} />
-      );
-      const targetContainer = getByTestId("target");
+      const { rerender } = render(<App hasSource hasTarget={false} />);
+      const targetContainer = screen.getByTestId("target");
       expect(targetContainer).not.toHaveTextContent("Hello");
       rerender(<App hasSource hasTarget />);
       expect(targetContainer).toHaveTextContent("Hello");
     });
 
     it("supports target unmount", () => {
-      const { getByTestId, rerender } = render(<App hasSource hasTarget />);
-      const targetContainer = getByTestId("target");
+      const { rerender } = render(<App hasSource hasTarget />);
+      const targetContainer = screen.getByTestId("target");
       expect(targetContainer).toHaveTextContent("Hello");
       rerender(<App hasSource hasTarget={false} />);
       expect(targetContainer).not.toHaveTextContent("Hello");
     });
 
     it("supports source late mount", () => {
-      const { getByTestId, rerender } = render(
-        <App hasSource={false} hasTarget />
-      );
-      const targetContainer = getByTestId("target");
+      const { rerender } = render(<App hasSource={false} hasTarget />);
+      const targetContainer = screen.getByTestId("target");
       expect(targetContainer).not.toHaveTextContent("Hello");
       rerender(<App hasSource hasTarget />);
       expect(targetContainer).toHaveTextContent("Hello");
     });
 
     it("supports source unmount", () => {
-      const { getByTestId, rerender } = render(<App hasSource hasTarget />);
-      const targetContainer = getByTestId("target");
+      const { rerender } = render(<App hasSource hasTarget />);
+      const targetContainer = screen.getByTestId("target");
       expect(targetContainer).toHaveTextContent("Hello");
       rerender(<App hasSource={false} hasTarget />);
       expect(targetContainer).not.toHaveTextContent("Hello");
     });
 
-    it("supports source swapping", () => {
+    it("supports source swapping", async () => {
       function App() {
         const [source, setSource] = React.useState("A");
         return (
@@ -211,14 +219,14 @@ describe("teleporter", () => {
           </div>
         );
       }
-      const { getByTestId, getByText } = render(<App />);
-      const targetContainer = getByTestId("target");
-      const useABtn = getByText("Use A");
-      const useBBtn = getByText("Use B");
+      const { user } = render(<App />);
+      const targetContainer = screen.getByTestId("target");
+      const useABtn = screen.getByText("Use A");
+      const useBBtn = screen.getByText("Use B");
       expect(targetContainer).toHaveTextContent("Source A");
-      fireEvent.click(useBBtn);
+      await user.click(useBBtn);
       expect(targetContainer).toHaveTextContent("Source B");
-      fireEvent.click(useABtn);
+      await user.click(useABtn);
       expect(targetContainer).toHaveTextContent("Source A");
     });
   });
@@ -227,7 +235,7 @@ describe("teleporter", () => {
     it("takes only the latest defined source", () => {
       const Teleporter = createTeleporter();
 
-      const { getByTestId } = render(
+      render(
         <div>
           <div data-testid="target">
             <Teleporter.Target />
@@ -239,13 +247,13 @@ describe("teleporter", () => {
         </div>
       );
 
-      expect(getByTestId("target")).toHaveTextContent("B");
+      expect(screen.getByTestId("target")).toHaveTextContent("B");
     });
 
     it("takes uses the latest source if the new one is unmounted", () => {
       const Teleporter = createTeleporter();
 
-      const { getByTestId, rerender } = render(
+      const { rerender } = render(
         <div>
           <div data-testid="target">
             <Teleporter.Target />
@@ -257,7 +265,7 @@ describe("teleporter", () => {
         </div>
       );
 
-      expect(getByTestId("target")).toHaveTextContent("B");
+      expect(screen.getByTestId("target")).toHaveTextContent("B");
 
       rerender(
         <div>
@@ -270,13 +278,13 @@ describe("teleporter", () => {
         </div>
       );
 
-      expect(getByTestId("target")).toHaveTextContent("A");
+      expect(screen.getByTestId("target")).toHaveTextContent("A");
     });
 
     it("allows multiple sources using `multiSources` option", () => {
       const Teleporter = createTeleporter({ multiSources: true });
 
-      const { getByTestId } = render(
+      render(
         <div>
           <div data-testid="target">
             <Teleporter.Target />
@@ -288,13 +296,13 @@ describe("teleporter", () => {
         </div>
       );
 
-      expect(getByTestId("target")).toHaveTextContent("AB");
+      expect(screen.getByTestId("target")).toHaveTextContent("AB");
     });
 
     it("handles uses the latest target defined", () => {
       const Teleporter = createTeleporter();
 
-      const { getByTestId } = render(
+      render(
         <div>
           <div data-testid="targetA">
             <Teleporter.Target />
@@ -308,8 +316,8 @@ describe("teleporter", () => {
         </div>
       );
 
-      expect(getByTestId("targetA")).not.toHaveTextContent("A");
-      expect(getByTestId("targetB")).toHaveTextContent("A");
+      expect(screen.getByTestId("targetA")).not.toHaveTextContent("A");
+      expect(screen.getByTestId("targetB")).toHaveTextContent("A");
     });
   });
 });
