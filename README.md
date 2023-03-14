@@ -109,6 +109,21 @@ const Teleporter = createTeleporter({ multiSources: true })
 // The target will contains the two links
 ```
 
+### Use function as children
+
+Useful for having access to the `Target` element. E.g., to dispatch an event through the `Target` when something happens in the `Source`.
+
+```js
+const Teleporter = createTeleporter();
+
+const forwardEvent = (element) => (event) =>
+  element.dispatch(new Event(event.type, event));
+
+<Teleporter.Source>
+  {(element) => <div onClick={forwardEvent(element)}></div>}
+</Teleporter.Source>;
+```
+
 ## API
 
 ### createTeleporter
