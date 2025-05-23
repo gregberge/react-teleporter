@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/gregberge/react-teleporter/compare/v3.1.0...v3.2.0) (2025-05-23)
+
+
+### Features
+
+* add react 19 to the peer dependencies ([#50](https://github.com/gregberge/react-teleporter/issues/50)) ([71da6b9](https://github.com/gregberge/react-teleporter/commit/71da6b9771d42a365c6aa6b4a4950a9d764c871e))
+
 ## [3.1.0](https://github.com/gregberge/react-teleporter/compare/v3.0.2...v3.1.0) (2023-03-14)
 
 
